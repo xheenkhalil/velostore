@@ -10,9 +10,9 @@ import Link from 'next/link'
 
 export default function UserPage() {
   const [activeTab, setActiveTab] = useState('orders')
-  const wishlistIds = useCartStore(s => s.wishlist)
+  const wishlistItems = useCartStore(s => s.wishlist)
   // Derive wishlist products
-  const wishlistProducts = MOCK_PRODUCTS.filter(p => wishlistIds.includes(p._id))
+  const wishlistProducts = MOCK_PRODUCTS.filter(p => wishlistItems.some(item => item.id === p._id))
 
   const menuItems = [
     { id: 'orders', label: 'My Orders', icon: Package },
