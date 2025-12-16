@@ -11,8 +11,8 @@ export default function CheckoutPage() {
   const [step, setStep] = useState(1) // 1: Address, 2: Payment, 3: Processing, 4: Success
   const [loadingStep, setLoadingStep] = useState(0) // For processing messages
   const router = useRouter()
-  const clearCart = useCartStore(s => s.items.length = 0) // Need to implement clear in store properly or just empty array? 
-  // Store update: we should probably add a clearCart method, but for now we can just redirect or simulate.
+  const clearCart = useCartStore(s => s.clearCart) 
+
   
   // processing simulation
   useEffect(() => {
@@ -32,6 +32,7 @@ export default function CheckoutPage() {
     if (step === 4) {
         // Generate random order ID
         const orderId = 'VTR' + Math.floor(100000 + Math.random() * 900000)
+        clearCart()
         setTimeout(() => {
             router.push(`/tracking/${orderId}`)
         }, 3000)
@@ -43,15 +44,17 @@ export default function CheckoutPage() {
       <div className="max-w-md w-full bg-white rounded-3xl shadow-xl overflow-hidden relative min-h-[600px] flex flex-col">
         
         {/* Header Progress */}
-        <div className="flex justify-between px-8 py-6 border-b border-gray-100 bg-white/50 backdrop-blur z-10 sticky top-0">
+        <div className="flex justify-between px-12 py-8 border-b border-gray-100 bg-white/50 backdrop-blur z-10 sticky top-0 relative overflow-hidden">
+            {/* Horizontal Line */}
+            <div className="absolute top-1/2 left-12 right-12 h-0.5 bg-gray-200 -translate-y-1/2 z-0" />
+            
             {[1, 2, 3].map((s) => (
-                <div key={s} className="flex flex-col items-center gap-1 relative z-10">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500 ${step >= s ? 'bg-black text-white scale-110' : 'bg-gray-100 text-gray-400'}`}>
-                        {step > s ? <Check className="w-4 h-4" /> : s}
+                <div key={s} className="flex flex-col items-center gap-1 relative z-10 bg-white px-2"> {/* Added bg-white to hide line behind numbers */}
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-500 border-4 border-white shadow-sm ${step >= s ? 'bg-black text-white scale-110 shadow-lg' : 'bg-gray-100 text-gray-400'}`}>
+                        {step > s ? <Check className="w-5 h-5" /> : s}
                     </div>
                 </div>
             ))}
-            {/* Progress Bar background could go here */}
         </div>
 
         <div className="flex-1 relative p-8">

@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VELO | Spatial E-Commerce
 
-## Getting Started
+A modern, high-performance headless e-commerce application built with Next.js 15, featuring a spatial design aesthetic, Framer Motion animations, and a seamless shopping experience.
 
-First, run the development server:
+![Velo Preview](https://velostores.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Key Features
+
+- **Spatial Design**: Immersive UI with glassmorphism, smooth transitions, and persistent layout animations.
+- **State Management**: Robust cart and wishlist management using Zustand with local storage persistence.
+- **Checkout & Cart**:
+  - **Direct Cart Access**: Dedicated cart page for reviewing items.
+  - **Smart Checkout**: Step-by-step checkout flow (Address -> Payment -> Processing -> Success) with visual progress indicators.
+  - **Auto-Cleanup**: Cart automatically clears upon successful order placement.
+- **Wishlist**: Save favorite items for later. Fully persistent.
+- **Mobile First**: Optimized product cards with accessible quick actions on touch devices.
+- **Performance**:
+  - Next.js App Router for server-side rendering and static generation.
+  - Optimized images via `next/image`.
+  - Code splitting and lazy loading.
+- **SEO Optimized**: Semantic HTML, meta tags, and structured data ready.
+
+## 🛠️ Technology Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS, CSS Modules
+- **Animations**: Framer Motion
+- **State Management**: Zustand
+- **Icons**: Lucide React
+- **Fonts**: Geist / Geist Mono (via `next/font`)
+
+## 📦 Getting Started
+
+Follow these steps to set up the project locally.
+
+### Prerequisites
+
+- Node.js 18+ installed
+- npm, pnpm, or yarn
+
+### Installation
+
+1.  **Clone the repository**
+
+    ```bash
+    git clone https://github.com/xheenkhalil/velo.git
+    cd velo
+    ```
+
+2.  **Install dependencies**
+
+    ```bash
+    npm install
+    # or
+    pnpm install
+    ```
+
+3.  **Run the development server**
+
+    ```bash
+    npm run dev
+    ```
+
+4.  **Open the app**
+    Visit [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📂 Project Structure
+
+```
+src/
+├── app/                # App Router pages and layouts
+│   ├── cart/           # Shopping Cart page
+│   ├── checkout/       # Checkout flow
+│   ├── product/        # Product details [slug]
+│   └── wishlist/       # Wishlist page
+├── components/         # Reusable UI components
+│   ├── layout/         # Navbar, Footer
+│   ├── ui/             # ProductCard, Buttons, etc.
+│   └── features/       # Feature-specific components
+├── store/              # Global state (Zustand)
+│   └── cart.ts         # Cart & Wishlist logic
+└── lib/                # Utilities and helpers
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚧 Roadmap / Current Mock Status
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project is currently a **Frontend Prototype** with simulated backend features:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Payments**: The checkout process simulates payment verification. No actual card processing occurs.
+- **Backend**: Product data is currently mocked or fetched from static sources. A headless CMS (like Sanity or Shopify) integration is the expected next step.
+- **Authentication**: User profile features are UI-only.
 
-## Learn More
+## 🤝 Contributing
 
-To learn more about Next.js, take a look at the following resources:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.

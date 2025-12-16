@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { TopNavbar } from "@/components/layout/TopNavbar";
-import { CartDrawer } from "@/components/layout/CartDrawer";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
@@ -16,8 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VELO | Spatial E-Commerce",
-  description: "A headless, spatial shopping experience.",
+  title: "VELO | Next-Gen E-Commerce",
+  description: "Experience the future of shopping with Velo. A spatial, headless e-commerce store built with Next.js.",
+  keywords: ["ecommerce", "nextjs", "react", "shopping", "spatial design", "modern web"],
 };
 
 export default function RootLayout({
@@ -33,7 +33,6 @@ export default function RootLayout({
         <TopNavbar />
         {children}
         <Footer />
-        <CartDrawer />
       </body>
     </html>
   );

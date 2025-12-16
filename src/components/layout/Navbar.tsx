@@ -1,22 +1,21 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Home, ShoppingBag, Search, User } from 'lucide-react'
+import { Home, ShoppingBag, Search, User, Heart } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { clsx } from 'clsx'
-import { useCartStore } from '@/store/cart'
 
 const items = [
   { name: 'Home', href: '/', icon: Home },
   { name: 'Search', href: '/search', icon: Search },
-  { name: 'Cart', href: '#cart', icon: ShoppingBag, action: 'toggleCart' },
+  { name: 'Wishlist', href: '/wishlist', icon: Heart },
+  { name: 'Cart', href: '/cart', icon: ShoppingBag },
   { name: 'Profile', href: '/profile', icon: User },
 ]
 
 export function Navbar() {
   const pathname = usePathname()
-  const toggleCart = useCartStore((s) => s.toggleCart)
 
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
@@ -34,13 +33,7 @@ export function Navbar() {
           return (
             <Link
               key={item.name}
-              href={item.action ? '#' : item.href}
-              onClick={(e) => {
-                if (item.action === 'toggleCart') {
-                  e.preventDefault()
-                  toggleCart()
-                }
-              }}
+              href={item.href}
               className="relative flex items-center justify-center w-12 h-12 rounded-full transition-colors hover:bg-white/5"
             >
               {isActive && (

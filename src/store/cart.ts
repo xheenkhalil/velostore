@@ -12,12 +12,13 @@ export interface CartItem {
 
 interface CartStore {
   items: CartItem[]
-  wishlist: string[]
+  wishlist: CartItem[]
   isOpen: boolean
   addItem: (item: CartItem) => void
   removeItem: (id: string) => void
+  clearCart: () => void
   toggleCart: () => void
-  toggleWishlist: (id: string) => void
+  toggleWishlist: (item: CartItem) => void
   updateQuantity: (id: string, quantity: number) => void
 }
 
@@ -39,13 +40,14 @@ export const useCartStore = create<CartStore>()(
         return { items: [...state.items, { ...item, quantity: item.quantity }] }
       }),
       removeItem: (id) => set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
+      clearCart: () => set({ items: [] }),
       toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
-      toggleWishlist: (id) => set((state) => {
-        const inWishlist = state.wishlist.includes(id)
+      toggleWishlist: (item) => set((state) => {
+        const inWishlist = state.wishlist.some((i) => i.id === item.id)
         return {
           wishlist: inWishlist 
-            ? state.wishlist.filter(wId => wId !== id)
-            : [...state.wishlist, id]
+            ? state.wishlist.filter(i => i.id !== item.id)
+            : [...state.wishlist, item]
         }
       }),
       updateQuantity: (id, quantity) => set((state) => {
